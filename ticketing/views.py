@@ -10,7 +10,7 @@ def movie_list(request):
     movies = Movie.objects.all()
     count = len(movies)
     context = {
-        'movie_list': movies,
+        'movies': movies,
         'count': count
     }
     return render(request, 'ticketing/movie_list.html', context)
