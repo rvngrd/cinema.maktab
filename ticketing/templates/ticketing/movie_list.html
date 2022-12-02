@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html dir="auto" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>فهرست فیلم ها</title>
-    <link rel="stylesheet" type="text/css" href="/static/ticketing/css/main.css">
+    <link rel="stylesheet" type="text/css" href="{% static "ticketing/css/main.css" %}">
     <style>
     </style>
 </head>
@@ -29,7 +30,7 @@
     {% else %}
         <p style="color: red">فیلمی موجود نیست</p>
     {% endif %}
-<script src="/static/ticketing/js/main.js">
+<script src="{% static "/ticketing/js/main.js" %}">
 
 </script>
 </body>
