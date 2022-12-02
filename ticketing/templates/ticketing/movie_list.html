@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>فهرست فیلم ها</title>
+    <link rel="stylesheet" type="text/css" href="/static/ticketing/css/main.css">
     <style>
         h1{
             background-color: aquamarine;
@@ -11,7 +12,7 @@
 </head>
 <body>
     <h1>سامانه فروش بلیت سینما</h1>
-    <h2>لیست فیلم ها</h2>
+    <h2 id="special">لیست فیلم ها</h2>
     <a href="{% url "ticketing:cinema_list" %}">
     فهرست سینما ها
     </a>
@@ -31,5 +32,8 @@
     {% else %}
         <p style="color: red">فیلمی موجود نیست</p>
     {% endif %}
+<script src="#">
+
+</script>
 </body>
 </html>
