@@ -25,3 +25,11 @@ def cinema_list(request):
         'count': count
     }
     return render(request, 'ticketing/cinema_list.html', context)
+
+
+def movie_details(request, movie_id):
+    return HttpResponse('salam')
+
+
+def cinema_details(request, cinema_id):
+    pass
