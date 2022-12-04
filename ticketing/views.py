@@ -36,7 +36,7 @@ def movie_details(request, movie_id):
 
 
 def cinema_details(request, cinema_id):
-    cinema = get_object_or_404(Movie, pk=cinema_id)
+    cinema = get_object_or_404(Cinema, pk=cinema_id)
     context = {
         'cinema': cinema
     }
