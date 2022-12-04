@@ -38,6 +38,6 @@ def movie_details(request, movie_id):
 def cinema_details(request, cinema_id):
     cinema = get_object_or_404(Movie, pk=cinema_id)
     context = {
-        'movie': cinema
+        'cinema': cinema
     }
     return render(request, 'ticketing/cinema_details.html', context)
