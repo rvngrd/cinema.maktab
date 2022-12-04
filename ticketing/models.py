@@ -33,7 +33,7 @@ class Cinema(models.Model):
     capacity = models.IntegerField('گنجایش')
     phone = models.CharField('شماره تماس', max_length=20, blank=True, null=True)
     address = models.TextField('آدرس')
-    image = models.ImageField('تصویر', upload_to='cinema_images/', blank=True, null=True )
+    image = models.ImageField('تصویر', upload_to='cinema_images/', blank=True, null=True)
     def __str__(self):
         return self.name
 
