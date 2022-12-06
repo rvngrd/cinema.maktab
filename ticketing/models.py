@@ -70,3 +70,9 @@ class ShowTime(models.Model):
 
     def __str__(self):
         return '{} - {} - {}'.format(self.movie, self.cinema, self.start_time)
+
+    def get_price_display(self):
+        return '{} تومان'.format(self.price)
+
+    def is_full(self):
+        return self.free_seats == 0
