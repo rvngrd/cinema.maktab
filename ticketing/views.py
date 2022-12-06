@@ -44,6 +44,7 @@ def cinema_details(request, cinema_id):
 
 
 def showtime_list(request):
+    request.user
     showtimes = ShowTime.objects.all().order_by('price')
     context = {
         'showtimes': showtimes
