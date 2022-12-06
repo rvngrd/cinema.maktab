@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-from ticketing.models import Movie, Cinema
+from ticketing.models import Movie, Cinema, ShowTime
 
 
 def movie_list(request):
@@ -41,3 +41,11 @@ def cinema_details(request, cinema_id):
         'cinema': cinema
     }
     return render(request, 'ticketing/cinema_details.html', context)
+
+
+def showtime_list(request):
+    showtimes = ShowTime.objects.all()
+    context = {
+        'showtimes': showtimes
+    }
+    return render(request, 'ticketing/showtime_list.html', context)
