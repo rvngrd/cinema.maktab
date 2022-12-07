@@ -1,21 +1,31 @@
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse
+
 
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        if user is None:
-            return Http404('نام کاربری یا رمز عبور اشتباه است')
-        else:
+        if user is not None:
+            #successful login
             login(request, user)
-            return HttpResponse('{} خوش آمدید'.format(username))
+            return HttpResponseRedirect(reverse('ticketing:showtime_list'))
+        else:
+            #undefined user or wrong password
+            context = {
+                'username': username,
+                'error': 'کاربری با این مشخصات یافت نشد'
+            }
     else:
-        return render(request, 'accounts/login.html', {})
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('ticketing:showtime_list'))
+        context = {}
+    return render(request, 'accounts/login.html', {})
 
 def logout_view(request):
     pass
