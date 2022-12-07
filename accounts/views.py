@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,11 +12,11 @@ def login_view(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            #successful login
+            # successful login
             login(request, user)
             return HttpResponseRedirect(reverse('ticketing:showtime_list'))
         else:
-            #undefined user or wrong password
+            # undefined user or wrong password
             context = {
                 'username': username,
                 'error': 'کاربری با این مشخصات یافت نشد'
@@ -26,6 +26,7 @@ def login_view(request):
             return HttpResponseRedirect(reverse('ticketing:showtime_list'))
         context = {}
     return render(request, 'accounts/login.html', {})
+
 
 def logout_view(request):
     pass
