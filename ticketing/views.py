@@ -44,9 +44,11 @@ def cinema_details(request, cinema_id):
 
 
 def showtime_list(request):
-    request.user
-    showtimes = ShowTime.objects.all().order_by('price')
-    context = {
-        'showtimes': showtimes
-    }
-    return render(request, 'ticketing/showtime_list.html', context)
+    if request.user.is_authenticated and request.user.is_active:
+        showtimes = ShowTime.objects.all().order_by('price')
+        context = {
+            'showtimes': showtimes
+        }
+        return render(request, 'ticketing/showtime_list.html', context)
+    else:
+        return HttpResponse('اول وارد شوید')
