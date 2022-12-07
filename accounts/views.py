@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -29,4 +29,5 @@ def login_view(request):
 
 
 def logout_view(request):
-    pass
+    logout(request)
+    return HttpResponseRedirect(reverse('accounts:login'))
