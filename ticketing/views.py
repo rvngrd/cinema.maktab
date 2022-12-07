@@ -50,3 +50,4 @@ def showtime_list(request):
         'showtimes': showtimes
     }
     return render(request, 'ticketing/showtime_list.html', context)
+
