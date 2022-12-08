@@ -45,6 +45,7 @@ def cinema_details(request, cinema_id):
     }
     return render(request, 'ticketing/cinema_details.html', context)
 
+
 @login_required
 def showtime_list(request):
     showtimes = ShowTime.objects.all().order_by('price')
