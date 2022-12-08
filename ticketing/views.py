@@ -1,7 +1,9 @@
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
+from django.urls import reverse
+
 from ticketing.models import Movie, Cinema, ShowTime
 
 
@@ -45,10 +47,10 @@ def cinema_details(request, cinema_id):
 
 def showtime_list(request):
     if request.user.is_authenticated:
-            showtimes = ShowTime.objects.all().order_by('price')
-            context = {
-                'showtimes': showtimes
-            }
-            return render(request, 'ticketing/showtime_list.html', context)
+        showtimes = ShowTime.objects.all().order_by('price')
+        context = {
+            'showtimes': showtimes
+        }
+        return render(request, 'ticketing/showtime_list.html', context)
     else:
-        return HttpResponseForbidden('اول وارد شوید')
+        return HttpResponseRedirect(reverse('accounts:login'))
