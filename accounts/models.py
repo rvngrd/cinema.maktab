@@ -37,6 +37,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.get_full_name()
 
+    def get_balance_display(self):
+        return '{} تومان'.format(self.balance)
+
     def deposit(self, amount):
         self.balance += amount
         self.save()
