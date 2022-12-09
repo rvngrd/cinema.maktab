@@ -27,3 +27,22 @@ class Profile(models.Model):
         (NON_BINARY, 'نان باینری')
     )
     gender = models.IntegerField('جنسیت', choices=GENDER_CHOICES, null=True, blank=True)
+    birth_date = models.DateTimeField('تاریخ تولد', null=True, blank=True)
+    address = models.TextField('آدرس', null=True, blank=True)
+    profile_image = models.ImageField('تصویر', upload_to='users/profile_images/', null=True, blank=True)
+
+    balance = models.IntegerField('اعتبار', default=0)
+
+    def __str__(self):
+        return self.user.get_full_name()
+
+    def deposit(self, amount):
+        self.balance += amount
+        self.save()
+
+    def spend(self):
+        # if self.balance < amount:
+        #     return False
+        # self.balance -= amount
+        # self.save()
+        return True
