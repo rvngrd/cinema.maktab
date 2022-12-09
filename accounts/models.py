@@ -33,6 +33,7 @@ class Profile(models.Model):
 
     balance = models.IntegerField('اعتبار', default=0)
 
+    # behaviors
     def __str__(self):
         return self.user.get_full_name()
 
