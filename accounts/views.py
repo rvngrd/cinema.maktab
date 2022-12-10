@@ -17,7 +17,7 @@ def login_view(request):
             login(request, user)
             if request.GET.get('next'):
                 return HttpResponseRedirect(request.GET.get('next'))
-            return HttpResponseRedirect(reverse('ticketing:showtime_list'))
+            return HttpResponseRedirect(reverse('ticketing:cinema_list'))
         else:
             # undefined user or wrong password
             context = {
