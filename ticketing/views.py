@@ -62,3 +62,12 @@ def ticket_list(request):
         'tickets': tickets
     }
     return render(request, 'ticketing/ticket_list.html', context)
+
+
+@login_required
+def ticket_details(request, ticket_id):
+    ticket = Ticket.objects.get(pk=ticket_id)
+    context = {
+        'ticket': ticket
+    }
+    return render(request, 'ticketing/ticket_details.html', context)
