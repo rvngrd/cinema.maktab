@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
-from ticketing.models import Movie, Cinema, ShowTime
+from ticketing.models import Movie, Cinema, ShowTime, Ticket
 
 
 def movie_list(request):
@@ -53,3 +53,12 @@ def showtime_list(request):
         'showtimes': showtimes
     }
     return render(request, 'ticketing/showtime_list.html', context)
+
+
+@login_required
+def ticket_list(request):
+    tickets = Ticket.objects.filter(customer=request.user.profile).order_by('-order_time')
+    context = {
+        'tickets': tickets
+    }
+    return render(request, 'ticketing/ticket_list.html', context)
