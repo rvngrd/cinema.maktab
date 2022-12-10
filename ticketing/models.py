@@ -34,6 +34,7 @@ class Cinema(models.Model):
     phone = models.CharField('شماره تماس', max_length=20, blank=True, null=True)
     address = models.TextField('آدرس')
     image = models.ImageField('تصویر', upload_to='cinema_images/', blank=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -76,3 +77,19 @@ class ShowTime(models.Model):
 
     def is_full(self):
         return self.free_seats == 0
+
+
+class Ticket(models.Model):
+    """
+    Represents tickets bought by user in an order
+    """
+    class Meta:
+        verbose_name = 'بلیت'
+        verbose_name_plural = 'بلیت'
+    showtime = models.ForeignKey('ShowTime', on_delete=models.PROTECT, verbose_name='سانس')
+    customer = models.ForeignKey('accounts.Profile', on_delete=models.PROTECT, verbose_name='خریدار')
+    seat_count = models.IntegerField('تعداد صندلی')
+    order_time = models.DateTimeField('زمان خرید', auto_now_add=True)
+
+    def __str__(self):
+        return '{} بلیت به نام {} برای فیلم {}'.format(self.seat_count, self.customer, self.showtime.movie)
