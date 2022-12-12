@@ -61,6 +61,16 @@ def showtime_details(request, showtime_id):
         'showtime': showtime
     }
     # Buy tickets
+    if request.method == 'POST':
+        try:
+            seat_count = int(request.POST['seat_count'])
+            assert showtime.status == showtime.SALE_OPEN, 'خرید بلیت برای این سانس امکان پذیر نیست'
+            assert showtime.free_seats >= seat_count, 'به اندازه مقدار انتخاب شده صندلی خالی وجود ندارد'
+            total_price = showtime.price * seat_count
+            assert request.user.profile.balance >= total_price, 'موجودی کافی نیست'
+            Ticket.objects.create(showtime=showtime, customer=request.user.profile, seat_count=seat_count)
+        except Exception as e:
+            context['error'] = str(e)
     #
     return render(request, 'ticketing/showtime_details.html', context)
 
