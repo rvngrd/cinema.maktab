@@ -61,7 +61,6 @@ def showtime_details(request, showtime_id):
         'showtime': showtime
     }
     # Buy tickets
-
     #
     return render(request, 'ticketing/showtime_details.html', context)
 
