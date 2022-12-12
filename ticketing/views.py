@@ -55,6 +55,18 @@ def showtime_list(request):
 
 
 @login_required
+def showtime_details(request, showtime_id):
+    showtime = ShowTime.objects.get(pk=showtime_id)
+    context = {
+        'showtime': showtime
+    }
+    # Buy tickets
+
+    #
+    return render(request, 'ticketing/showtime_details.html', context)
+
+
+@login_required
 def ticket_list(request):
     tickets = Ticket.objects.filter(customer=request.user.profile).order_by('-order_time')
     context = {
