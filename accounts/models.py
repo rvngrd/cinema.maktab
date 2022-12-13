@@ -44,9 +44,9 @@ class Profile(models.Model):
         self.balance += amount
         self.save()
 
-    def spend(self):
-        # if self.balance < amount:
-        #     return False
-        # self.balance -= amount
-        # self.save()
+    def spend(self, amount):
+        if self.balance < amount:
+            return False
+        self.balance -= amount
+        self.save()
         return True
