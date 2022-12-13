@@ -78,6 +78,19 @@ class ShowTime(models.Model):
     def is_full(self):
         return self.free_seats == 0
 
+    def reserve_seats(self, seat_count):
+        """
+        Reserves one or more seats for a customer
+        :param seat_count: An integer as the number of seats to be reserved
+        """
+        assert isinstance(seat_count, int) and seat_count > 0, 'Number of seats should be a positive integer'
+        assert self.status == ShowTime.SALE_OPEN, 'Sale is not open'
+        assert self.free_seats >= seat_count, 'Not enough free seats'
+        self.free_seats -= seat_count
+        if self.free_seats == 0:
+            self.status = ShowTime.TICKETS_SOLD
+        self.save()
+
 
 class Ticket(models.Model):
     """
