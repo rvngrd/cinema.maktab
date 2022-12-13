@@ -49,8 +49,12 @@ def cinema_details(request, cinema_id):
 
 
 def showtime_list(request):
-    search_form = ShowTimeSearchForm()
-    showtimes = ShowTime.objects.all().order_by('price')
+    search_form = ShowTimeSearchForm(request.GET)
+    if search_form.is_valid():
+        movie_name = search_form.cleaned_data['movie_name']
+        showtimes = ShowTime.objects.filter(movie__name__contains=movie_name).order_by('start_time')
+    else:
+        showtimes = ShowTime.objects.all().order_by('price')
     context = {
         'showtimes': showtimes,
         'search_form': search_form
