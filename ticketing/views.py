@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
+import ticketing.models
 from ticketing.models import Movie, Cinema, ShowTime, Ticket
 
 
@@ -68,6 +69,7 @@ def showtime_details(request, showtime_id):
             assert showtime.free_seats >= seat_count, 'به اندازه مقدار انتخاب شده صندلی خالی وجود ندارد'
             total_price = showtime.price * seat_count
             assert request.user.profile.spend(total_price), 'موجودی کافی نیست'
+            showtime.reserve_seats(seat_count)
             Ticket.objects.create(showtime=showtime, customer=request.user.profile, seat_count=seat_count)
         except Exception as e:
             context['error'] = str(e)
