@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 import ticketing.models
+from ticketing.forms import ShowTimeSearchForm
 from ticketing.models import Movie, Cinema, ShowTime, Ticket
 
 
@@ -48,9 +49,11 @@ def cinema_details(request, cinema_id):
 
 
 def showtime_list(request):
+    search_form = ShowTimeSearchForm()
     showtimes = ShowTime.objects.all().order_by('price')
     context = {
-        'showtimes': showtimes
+        'showtimes': showtimes,
+        'search_form': search_form
     }
     return render(request, 'ticketing/showtime_list.html', context)
 
