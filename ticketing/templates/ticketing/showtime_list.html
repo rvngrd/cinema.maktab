@@ -22,6 +22,14 @@
                     </div>
                 </div>
                 <div class="row px-2">
+                    <div class="col">
+                        <div class="alert alert-info mt-2 mb-0 py-1 px-3">
+                            {{ showtimes.count }}
+                            سانس یافت شد.
+                        </div>
+                    </div>
+                </div>
+                <div class="row px-2">
                     {% for showtime in showtimes %}
                         <div class="col-3 px-2 py-2">
                             <a href="{% url "ticketing:showtime_details" showtime_id=showtime.id %}"
