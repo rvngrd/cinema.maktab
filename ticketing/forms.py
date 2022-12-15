@@ -5,7 +5,7 @@ from ticketing.models import Cinema
 
 class ShowTimeSearchForm(forms.Form):
     movie_name = forms.CharField(max_length=100, label='نام فیلم', required=False)
-    sale_is_opem = forms.BooleanField(label='فقط سانس های قابل خرید', required=False)
+    sale_is_open = forms.BooleanField(label='فقط سانس های قابل خرید', required=False)
     movie_length_min = forms.IntegerField(label='حداقل زمان فیلم', min_value=0, max_value=200, required=False)
     movie_length_max = forms.IntegerField(label='حداکثر زمان فیلم', min_value=0, max_value=200, required=False)
     PRICE_ANY = '0'
