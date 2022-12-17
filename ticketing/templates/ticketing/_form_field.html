@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<label class="col-{{ label_size|default:2 }}" for="{{ field.id_for_label }}">
+    {{ field.label }}
+</label>
+<div class="col-{{ input_size|default:4 }}">
+    {{ field }}
+    {{ field.errors }}
+</div>
