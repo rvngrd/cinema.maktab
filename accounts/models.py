@@ -50,3 +50,21 @@ class Profile(models.Model):
         self.balance -= amount
         self.save()
         return True
+
+
+class Payment(models.Model):
+    """
+    Represents user payments
+    """
+
+    class Meta:
+        verbose_name = 'پرداخت'
+        verbose_name_plural = 'پرداخت'
+
+    profile = models.OneToOneField('Profile', on_delete=models.CASCADE, verbose_name='کاربر')
+    amount = models.IntegerField('مبلغ')
+    transaction_time = models.DateTimeField('زمان تراکنش', auto_now_add=True)
+    transaction_code = models.CharField('رسید تراکنش', max_length=30)
+
+    def __str__(self):
+        return '{} تومان افزایش اعتبار برای {}'.format(self.amount, self.profile)
