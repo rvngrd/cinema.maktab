@@ -59,7 +59,14 @@ def payment_list(request):
 
 @login_required
 def payment_create(request):
-    payment_form = PaymentForm()
+    if request.method == 'POST':
+        payment_form = PaymentForm(request.POST)
+        if payment_form.is_valid():
+            payment = payment_form.save()
+            request.user.profile.deposit(payment.amount)
+            return HttpResponseRedirect(reverse('accounts:payment_list'))
+    else:
+        payment_form = PaymentForm()
     context = {
         'payment_form': payment_form
     }
