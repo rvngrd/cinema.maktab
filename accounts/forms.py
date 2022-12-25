@@ -7,3 +7,4 @@ class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
         fields = ['profile', 'amount', 'transaction_code']
+        # or: exclude = ['profile', 'transaction_time']
