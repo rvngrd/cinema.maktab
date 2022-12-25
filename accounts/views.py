@@ -6,6 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse
 
+from accounts.forms import PaymentForm
 from accounts.models import Payment
 
 
@@ -54,3 +55,12 @@ def payment_list(request):
         'payments': payments
     }
     return render(request, 'accounts/payment_list.html', context)
+
+
+@login_required
+def payment_create(request):
+    payment_form = PaymentForm()
+    context = {
+        'payment_form': payment_form
+    }
+    return render(request, 'accounts/payment_create.html', context)
