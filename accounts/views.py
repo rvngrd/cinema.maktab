@@ -73,3 +73,8 @@ def payment_create(request):
         'payment_form': payment_form
     }
     return render(request, 'accounts/payment_create.html', context)
+
+
+@login_required
+def profile_edit(request):
+    pass
