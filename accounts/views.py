@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse
 
-from accounts.forms import PaymentForm, ProfileForm
+from accounts.forms import PaymentForm, ProfileForm, MyUserForm
 from accounts.models import Payment
 
 
@@ -84,7 +84,9 @@ def profile_edit(request):
             return HttpResponseRedirect(reverse('accounts:profile_details'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
+        user_form = MyUserForm(instance=request.user.profile)
     context = {
-        'profile_form': profile_form
+        'profile_form': profile_form,
+        'user_form': user_form
     }
     return render(request, 'accounts/profile_edit.html', context)
