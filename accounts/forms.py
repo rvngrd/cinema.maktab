@@ -48,4 +48,4 @@ class PaymentForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['mobile', 'gender', 'address']
+        fields = ['mobile', 'gender', 'address', 'profile_image']
