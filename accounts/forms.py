@@ -53,5 +53,7 @@ class ProfileForm(forms.ModelForm):
 
 
 class MyUserForm(UserChangeForm):
-    pass
+    class Meta(UserChangeForm.Meta):
+        fields = ['first_name', 'last_name', 'email']
+        password = None
 
