@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from accounts.models import Payment
+from accounts.models import Payment, Profile
 
 
 class PaymentForm(forms.ModelForm):
@@ -43,3 +43,9 @@ class PaymentForm(forms.ModelForm):
         except:
             raise ValidationError('قالب رسید تراکنش معتبر نیست')
         return code
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['mobile', 'gender', 'address']
