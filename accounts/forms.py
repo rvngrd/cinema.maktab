@@ -10,6 +10,14 @@ class PaymentForm(forms.ModelForm):
         fields = ['amount', 'transaction_code']
         # or: exclude = ['profile', 'transaction_time']
 
+    def clean(self):
+        super().clean()
+        amount = self.cleaned_data.get('amount')
+        code = self.cleaned_data.get('transaction_code')
+        if amount is not None and code is not None:
+            if int(code.spilit('-')[1]) != amount:
+                raise ValidationError('مبلغ و رسید تراکنش با هم همخوانی ندارند')
+
     def clean_amount(self):
         """
         Represents that amount has to be positive and multiple of 1000
