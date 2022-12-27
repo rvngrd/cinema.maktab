@@ -79,8 +79,10 @@ def payment_create(request):
 def profile_edit(request):
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if profile_form.is_valid():
+        user_form = MyUserForm(request.POST, instance=request.user.profile)
+        if profile_form.is_valid() and user_form.is_valid():
             profile_form.save()
+            user_form.save()
             return HttpResponseRedirect(reverse('accounts:profile_details'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
