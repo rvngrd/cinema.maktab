@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserChangeForm
 from django.core.exceptions import ValidationError
 
 from accounts.models import Payment, Profile
@@ -49,3 +50,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['mobile', 'gender', 'address', 'profile_image']
+
+
+class MyUserForm(UserChangeForm):
+    pass
+
